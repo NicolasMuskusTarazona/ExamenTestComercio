@@ -23,7 +23,7 @@ class BeneficiosEstrategiasController {
 
     public function show(Request $request, Response $response, array $args): Response {
         $useCase = new GetByIdBeneficiosEstrategias($this->repo);
-        $id = $args['id']; 
+        $id = (int) $args['id'];
         $BeneficiosEstrategia = $useCase->execute($id);
         if (!$BeneficiosEstrategia) {
             $response->getBody()->write(json_encode(["error" => "Beneficio Estrategia no registrado en la plataforma"]));
@@ -41,14 +41,14 @@ class BeneficiosEstrategiasController {
         $response->getBody()->write(json_encode($BeneficiosEstrategia));
         return $response->withStatus(201);
     }
-    public function buscarPorTamano(Request $request, Response $response): Response {
+    public function buscarPorTipo(Request $request, Response $response): Response {
         $tipo = $request->getQueryParams()['tipo'] ?? null;
     
         $validos = ['descuento_fijo', 'combo', 'bonificacion', '2x1', 'regalo', 'normal'];
     
         if (!in_array($tipo, $validos)) {
             $response->getBody()->write(json_encode([
-                'error' => 'Valor de tipo no valido. Usa: descuento_fijo, combo, bonificacion, 2x1, regalo o normalo'
+                'error' => 'Valor de tipo no valido. Usa: descuento_fijo, combo, bonificacion, 2x1, regalo o normal'
             ]));
             return $response->withStatus(400)->withHeader('Content-Type', 'application/json');
         }
