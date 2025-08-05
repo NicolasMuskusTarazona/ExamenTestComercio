@@ -26,7 +26,7 @@ class CustomErrorHandler implements ErrorHandlerInterface
             $message = "Ruta no encontrada";
         } elseif ($exception instanceof InvalidArgumentException) {
             $status = 422;
-            $message = "Errores semanticos";
+            $message = $exception->getMessage();
         } elseif ($exception instanceof HttpUnauthorizedException) {
             $status = 401;
             $message = "El usuario no esta Autorizado";
