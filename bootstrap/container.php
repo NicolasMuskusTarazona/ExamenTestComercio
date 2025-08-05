@@ -10,6 +10,9 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use App\Domain\Repositories\UserRepositoryInterface;
 use App\Infrastructure\Repositories\EloquentUserRepository;
 
+use App\Domain\Repositories\BeneficiosEstrategiasRepositoryInterface;
+use App\Infrastructure\Repositories\EloquentBeneficiosEstrategiasRepository;
+
 // Manejo de errores
 use App\Handler\CustomErrorHandler;
 use Slim\Handlers\ErrorHandler;
@@ -20,6 +23,11 @@ $container = new Container();
 // 1. User
 $container->set(UserRepositoryInterface::class,function(){
     return new EloquentUserRepository();
+});
+
+// 1. Beneficios Estrategias
+$container->set(BeneficiosEstrategiasRepositoryInterface::class,function(){
+    return new EloquentBeneficiosEstrategiasRepository();
 });
 
 // Manejo de Errores
