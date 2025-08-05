@@ -17,7 +17,7 @@ CREATE TABLE `usuarios`(
 -- 2. Beneficios Estrategias
 CREATE TABLE `beneficios_estrategias` (
     `id` INT NOT NULL AUTO_INCREMENT,
-    `tipo` ENUM('descuento_porcentaje', 'descuento_fijo', 'combo', 'bonificacion', '2x1', 'regalo', 'normal') DEFAULT 'normal',
+    `tipo` ENUM('descuento_fijo', 'combo', 'bonificacion', '2x1', 'regalo', 'normal') DEFAULT 'normal',
     `descripcion` TEXT,
     -- Parametros específicos por tipo
     `porcentaje_descuento` DECIMAL(5,2),         -- para 'descuento_porcentaje'
