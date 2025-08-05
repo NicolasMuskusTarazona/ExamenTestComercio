@@ -13,6 +13,9 @@ use App\Infrastructure\Repositories\EloquentUserRepository;
 use App\Domain\Repositories\BeneficiosEstrategiasRepositoryInterface;
 use App\Infrastructure\Repositories\EloquentBeneficiosEstrategiasRepository;
 
+use App\Domain\Repositories\BeneficioProductosRepositoryInterface;
+use App\Infrastructure\Repositories\EloquentBeneficiosProductosRepository;
+
 // Manejo de errores
 use App\Handler\CustomErrorHandler;
 use Slim\Handlers\ErrorHandler;
@@ -30,6 +33,10 @@ $container->set(BeneficiosEstrategiasRepositoryInterface::class,function(){
     return new EloquentBeneficiosEstrategiasRepository();
 });
 
+// 1. Beneficios Productos
+$container->set(BeneficioProductosRepositoryInterface::class,function(){
+    return new EloquentBeneficiosProductosRepository();
+});
 // Manejo de Errores
 $container->set(ErrorHandlerInterface::class, function () use ($container){
     return new CustomErrorHandler(
