@@ -67,3 +67,15 @@ VALUES
 ('bonificacion', 'Bono sorpresa por cumpleaños', NULL, NULL, NULL, NULL, NULL, 'activo'), -- Bonificacion
 ('2x1', 'Llévate 2 jugos pagando 1', NULL, NULL, NULL, 201, 201, 'activo'), -- 2x1
 ('2x1', 'Compra 1 cerveza y llévate otra gratis', NULL, NULL, NULL, 202, 202, 'activo'); -- 2x1
+
+INSERT INTO beneficio_productos (beneficio_id, producto_id, tipo_asociacion) VALUES
+(1, 101, 'principal'),
+(1, 102, 'regalo'),
+(2, 103, 'extra'),
+(2, 104, 'principal'),
+(3, 105, 'regalo'),
+(4, 101, 'extra'),
+(5, 102, 'principal'),
+(5, 103, 'regalo'),
+(3, 104, 'extra'),
+(4, 105, 'principal');
