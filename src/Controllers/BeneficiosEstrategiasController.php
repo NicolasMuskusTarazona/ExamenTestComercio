@@ -8,6 +8,14 @@ use App\UseCases\GetAllBeneficiosEstrategias;
 use App\UseCases\GetByIdBeneficiosEstrategias;
 use App\UseCases\UpdateBeneficiosEstrategias;
 use App\UseCases\DeleteBeneficiosEstrategias;
+// Strategy Pattern
+use App\Strategies\ComboStrategy;
+use App\Strategies\DescuentoFijoStrategy;
+use App\Strategies\BonificacionStrategy;
+use App\Strategies\DosPorUnoStrategy;
+use App\Strategies\NormalStrategy;
+use App\Strategies\RegaloStrategy;
+
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -88,4 +96,34 @@ class BeneficiosEstrategiasController {
         return $response->withStatus(200);
     }
     
+
+    // Strategy Pattern
+    public function aplicarBeneficio(Request $request, Response $response, array $args){
+        $data = $request->getParsedBody();
+    
+        // Obtener tipo y datos del beneficio
+        $tipo = $data['tipo'];
+        
+        // Estrategias mapeadas
+        $estrategias = [
+            'descuento_fijo' => new DescuentoFijoStrategy(),
+            'bonificacion' => new BonificacionStrategy(),
+            'combo' => new ComboStrategy(),
+            '2x1' => new DosPorUnoStrategy(),
+            'regalo' => new RegaloStrategy(),
+            'normal' => new NormalStrategy(),
+        ];
+    
+        if (!isset($estrategias[$tipo])) {
+            $response->getBody()->write(json_encode(['error' => 'Tipo de beneficio no válido']));
+            return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
+            }
+    
+        $estrategia = $estrategias[$tipo];
+        $resultado = $estrategia->aplicar($data);
+    
+        $response->getBody()->write(json_encode(['resultado' => $resultado]));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
+        
+    }
 }

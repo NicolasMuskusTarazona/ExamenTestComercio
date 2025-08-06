@@ -15,6 +15,7 @@ return function (App $app) {
     $app->group('/beneficios_estrategiasAdmin', function ($group) {
         $group->post('', [BeneficiosEstrategiasController::class, 'store']);
         $group->put('/{id}', [BeneficiosEstrategiasController::class, 'update']);
+        $group->post('/aplicar', [BeneficiosEstrategiasController::class, 'aplicarBeneficio']);
         $group->delete('/{id}', [BeneficiosEstrategiasController::class, 'destroy']);
     })->add(new RoleMiddleware('admin'))->add(new AuthMiddleware());
 };
