@@ -19,7 +19,7 @@ class CustomErrorHandler implements ErrorHandlerInterface
     public function __invoke(ServerRequestInterface $request, Throwable $exception, bool $displayErrorDetails, bool $logErrors, bool $logErrorDetails): ResponseInterface
     {
         $status = 500;
-        $message = $displayErrorDetails ? $exception->getMessage() : "Error interno en el servidor.";
+        $message = "Error interno en el servidor.";
 
         if ($exception instanceof HttpNotFoundException) {
             $status = 404;

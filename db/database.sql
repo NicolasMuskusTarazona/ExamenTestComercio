@@ -27,8 +27,10 @@ CREATE TABLE `plantas` (
 
 -- 3. Riego
 
+DROP TABLE IF EXISTS riego;
 CREATE TABLE `riego` (
     `id` INT NOT NULL AUTO_INCREMENT,
+    `fecha_riego` DATETIME,
     `plantas_id` INT NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`plantas_id`) REFERENCES `plantas`(`id`)
@@ -39,5 +41,14 @@ INSERT INTO `plantas`
 (`id`, `nombre`, `categoria`, `familia`,`proximo_riego`)
 VALUES
 (1, 'Aloe Vera', 'cactus', 'Asphodelaceae','2025-08-14'),
-(2, 'Lavanda', 'ornamental', 'Lamiaceae','2025-08-07');
+(2, 'Lavanda', 'ornamental', 'Lamiaceae','2025-08-07'),
+(3, 'A', 'Sin familia', 'a','2025-09-14'),
+(4, 'b', 'frutal', 'a','2025-10-07');
+
+
+INSERT INTO `riego` 
+(`id`, `fecha_riego`, `plantas_id`)
+VALUES
+(1, '2025-08-04',3),
+(2, '2025-08-14',2);
 

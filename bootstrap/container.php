@@ -14,6 +14,10 @@ use App\Infrastructure\Repositories\EloquentUserRepository;
 use App\Domain\Repositories\PlantasRepositoryInterface;
 use App\Infrastructure\Repositories\EloquentPlantasRepository;
 
+// Riego
+use App\Domain\Repositories\RiegoRepositoryInterface;
+use App\Infrastructure\Repositories\EloquentRiegoRepository;
+
 // Manejo de errores
 use App\Handler\CustomErrorHandler;
 use Slim\Handlers\ErrorHandler;
@@ -29,6 +33,11 @@ $container->set(UserRepositoryInterface::class,function(){
 // 2. Plantas
 $container->set(PlantasRepositoryInterface::class,function(){
     return new EloquentPlantasRepository();
+});
+
+// 3. Riego
+$container->set(RiegoRepositoryInterface::class,function(){
+    return new EloquentRiegoRepository();
 });
 
 // Manejo de Errores

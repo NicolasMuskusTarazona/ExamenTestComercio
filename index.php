@@ -32,5 +32,6 @@ $errorHanlder->setDefaultErrorHandler($container->get(ErrorHandlerInterface::cla
 // Ejecutando los script de routes/
 (require_once 'routes/users.php')($app);
 (require_once 'routes/plantas.php')($app);
+(require_once 'routes/riego.php')($app);
 
 $app->run();
