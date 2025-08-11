@@ -10,14 +10,9 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use App\Domain\Repositories\UserRepositoryInterface;
 use App\Infrastructure\Repositories\EloquentUserRepository;
 
-use App\Domain\Repositories\BeneficiosEstrategiasRepositoryInterface;
-use App\Infrastructure\Repositories\EloquentBeneficiosEstrategiasRepository;
-
-use App\Domain\Repositories\BeneficioProductosRepositoryInterface;
-use App\Infrastructure\Repositories\EloquentBeneficiosProductosRepository;
-
-use App\Domain\Repositories\UsuariosBeneficiosRepositoryInterface;
-use App\Infrastructure\Repositories\EloquentUsuariosBeneficiosRepository;
+// Plantas
+use App\Domain\Repositories\PlantasRepositoryInterface;
+use App\Infrastructure\Repositories\EloquentPlantasRepository;
 
 // Manejo de errores
 use App\Handler\CustomErrorHandler;
@@ -31,20 +26,11 @@ $container->set(UserRepositoryInterface::class,function(){
     return new EloquentUserRepository();
 });
 
-// 1. Beneficios Estrategias
-$container->set(BeneficiosEstrategiasRepositoryInterface::class,function(){
-    return new EloquentBeneficiosEstrategiasRepository();
+// 2. Plantas
+$container->set(PlantasRepositoryInterface::class,function(){
+    return new EloquentPlantasRepository();
 });
 
-$container->set(UsuariosBeneficiosRepositoryInterface::class,function(){
-    return new EloquentUsuariosBeneficiosRepository();
-});
-
-
-// 1. Beneficios Productos
-$container->set(BeneficioProductosRepositoryInterface::class,function(){
-    return new EloquentBeneficiosProductosRepository();
-});
 // Manejo de Errores
 $container->set(ErrorHandlerInterface::class, function () use ($container){
     return new CustomErrorHandler(
